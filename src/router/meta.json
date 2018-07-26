@@ -1,0 +1,12 @@
+{
+  "/": {
+    "title": "Home",
+    "description": "My Vue Project",
+    "keywords": "vue 2.0, vuex, vue-router"
+  },
+  "/inspire": {
+    "title": "Create something amazing",
+    "description": "",
+    "keywords": ""
+  }
+}
