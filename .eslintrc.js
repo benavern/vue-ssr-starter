@@ -8,12 +8,14 @@ module.exports = {
   },
   env: {
     browser: true,
+    node: true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: ['plugin:vue/recommended', 'standard'],
   // required to lint *.vue files
   plugins: [
-    'vue'
+    'vue',
+    'standard'
   ],
   // add your custom rules here
   'rules': {
