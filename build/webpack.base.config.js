@@ -1,13 +1,14 @@
 const path = require('path')
-const webpack = require('webpack')
-const vueConfig = require('./vue-loader.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const WebpackBarPlugin = require('webpackbar')
 
-const isProd = process.env.NODE_ENV === 'production'
 const resolve = (file) => path.resolve(__dirname, file)
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  mode: isProd ? 'production' : 'development',
   devtool: isProd
     ? false
     : '#cheap-module-source-map',
@@ -33,21 +34,22 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueConfig
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: file => (
+          /node_modules/.test(file) && !/\.vue\.js/.test(file)
+        )
       },
       {
         test: /\.css$/,
         loader: ['vue-style-loader', 'css-loader']
       },
       {
-        test: /\.styl$/,
-        loader: ['vue-style-loader', 'css-loader', 'stylus-loader']
+        test: /\.s(c|a)ss$/,
+        loader: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -64,13 +66,13 @@ module.exports = {
     hints: isProd ? 'warning' : false
   },
   plugins: isProd ? [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'common.[chunkhash].css'
-    })
+    }),
+    new VueLoaderPlugin()
   ] : [
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    new VueLoaderPlugin(),
+    new WebpackBarPlugin()
   ]
 }
