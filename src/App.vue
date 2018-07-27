@@ -2,7 +2,9 @@
   <div id="app">
     <nav>
       <ul>
-        <li v-for="menuItem in menu" :key="menuItem.path">
+        <li
+          v-for="menuItem in menu"
+          :key="menuItem.path">
           <router-link :to="menuItem.path">{{ menuItem.name }}</router-link>
         </li>
       </ul>
@@ -13,19 +15,19 @@
 </template>
 
 <script>
-  import Meta from 'mixins/meta'
+import Meta from 'mixins/meta'
 
-  export default {
-    mixins: [Meta],
-    data () {
-      return {
-        menu: [
-          { name: 'Home', path: '/' },
-          { name: 'About', path: '/about' },
-        ]
-      }
+export default {
+  mixins: [Meta],
+  data () {
+    return {
+      menu: [
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about' }
+      ]
     }
   }
+}
 </script>
 
 <style lang="scss">

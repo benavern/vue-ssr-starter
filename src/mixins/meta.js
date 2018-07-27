@@ -33,7 +33,6 @@ export default {
       const routeMeta = meta[this.$route.path] || {}
       const metaData = Object.assign({}, defaultMeta, routeMeta)
 
-
       document.title = metaData.title
       document.querySelector('meta[name="description"]').setAttribute('content', metaData.description)
       document.querySelector('meta[name="keywords"]').setAttribute('content', metaData.keywords)
