@@ -10,7 +10,13 @@
 npm run dev
 ```
 
-it is possible to add `:debug` to debug ssr stuff
+it is possible to add `:debug` to debug ssr stuff (a vscode task is provided)
+
+### Lint
+
+```sh
+npm run lint
+```
 
 ### Build
 
