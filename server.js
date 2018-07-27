@@ -117,7 +117,7 @@ function render (req, res) {
   }
 
   const context = {
-    title: 'vue-ssr-starterkit', // default title
+    title: '', // default title
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {
@@ -129,8 +129,7 @@ function render (req, res) {
       microCache.set(req.url, html)
     }
     if (!isProd) {
-      console.log(`whole request: ${Date.now() - s}ms`)
-      console.log('=====================================')
+      console.log(`[Render] "${req.url}": ${Date.now() - s}ms \n`)
     }
   })
 }
