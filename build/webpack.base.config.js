@@ -34,14 +34,12 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loaders: ['vue-loader', 'eslint-loader']
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: file => (
-          /node_modules/.test(file) && !/\.vue\.js/.test(file)
-        )
+        loaders: ['babel-loader', 'eslint-loader'],
+        exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file)
       },
       {
         test: /\.css$/,
