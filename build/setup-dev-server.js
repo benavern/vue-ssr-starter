@@ -26,7 +26,8 @@ module.exports = function setupDevServer (app, cb) {
   const clientCompiler = webpack(clientConfig)
   const devMiddleware = require('webpack-dev-middleware')(clientCompiler, {
     publicPath: clientConfig.output.publicPath,
-    noInfo: true
+    noInfo: true,
+    stats: 'minimal'
   })
   app.use(devMiddleware)
   clientCompiler.plugin('done', () => {
@@ -45,6 +46,7 @@ module.exports = function setupDevServer (app, cb) {
 
   // watch and update server renderer
   const serverCompiler = webpack(serverConfig)
+
   const mfs = new MFS()
   serverCompiler.outputFileSystem = mfs
   serverCompiler.watch({}, (err, stats) => {
