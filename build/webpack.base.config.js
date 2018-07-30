@@ -34,20 +34,20 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loaders: ['vue-loader', 'eslint-loader']
+        loaders: ['vue-loader']
       },
       {
         test: /\.js$/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        loaders: ['babel-loader'],
         exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file)
       },
       {
         test: /\.css$/,
-        loader: ['vue-style-loader', 'css-loader']
+        loaders: ['vue-style-loader', 'css-loader']
       },
       {
         test: /\.s(c|a)ss$/,
-        loader: ['vue-style-loader', 'css-loader', 'sass-loader']
+        loaders: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

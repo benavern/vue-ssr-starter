@@ -21,6 +21,15 @@ module.exports = function setupDevServer (app, cb) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   )
+  clientConfig.module.rules.push({
+    test: /\.(js|vue)$/,
+    loader: 'eslint-loader',
+    exclude: /node_modules/,
+    options: {
+      emitWarning: true,
+      emitErrors: true
+    }
+  })
 
   // dev middleware
   const clientCompiler = webpack(clientConfig)
